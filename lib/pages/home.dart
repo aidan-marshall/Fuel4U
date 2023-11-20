@@ -34,10 +34,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: const Icon(Icons.add),
                 onPressed: () {
                   fuelPriceModel.incrementDieselPrice();
+                  fuelPriceModel.addPriceEvent("diesel", false);
                 },
               ),
               IconButton(
-                icon: Icon(Icons.logout),
+                icon: const Icon(Icons.logout),
                 onPressed: () {
                   FirebaseAuth.instance.signOut();
                 },
@@ -112,7 +113,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: fuelPriceModel.incrementPetrolPrice,
+            onPressed: () {
+              fuelPriceModel.incrementPetrolPrice();
+              fuelPriceModel.addPriceEvent("petrol", true);
+            },
             tooltip: 'Increment Fuel Price',
             child: const Icon(Icons.add),
           ),

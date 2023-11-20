@@ -5,6 +5,8 @@ import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import '../firebase_options.dart';
 import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 ///Contains the relevant data for our views regarding fuel prices
 class FuelPriceModel extends  ChangeNotifier {
@@ -37,6 +39,20 @@ class FuelPriceModel extends  ChangeNotifier {
         _loggedIn = false;
       }
       notifyListeners();
+    });
+  }
+
+  Future<DocumentReference> addPriceEvent(String fuelType, bool isPetrol) {
+    if (!_loggedIn) {
+      throw Exception('Must be logged in');
+    }
+
+    return FirebaseFirestore.instance
+        .collection('PriceEvent')
+        .add(<String, dynamic>{
+      'fuelType': fuelType,
+      'timestamp': DateTime.now(),
+      'price': !isPetrol ? _dieselPricePerLitre : _petrolPricePerLitre,
     });
   }
 
