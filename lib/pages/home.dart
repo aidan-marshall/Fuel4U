@@ -5,6 +5,8 @@ import 'package:fuel_app/model/fuel_price.dart';
 import 'package:fuel_app/pages/settings.dart';
 import 'package:fuel_app/pages/login.dart';
 
+import '../price_event_tag.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -127,25 +129,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildPriceHistoryList(BuildContext context, FuelPriceModel fuelPriceModel) {
     return ListView.builder(
-        itemCount: 20,
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-        itemBuilder: (listBuildContext, index) {
-          if (index.isEven && !fuelPriceModel.showDieselPrice) {
-            return Container();
-          }
-          if (!index.isEven && !fuelPriceModel.showPetrolPrice) {
-            return Container();
-          }
-          String message = index.isEven
-              ? 'Diesel price changed to ${fuelPriceModel.currentDieselPrice - (index / 2).ceil()}'
-              : 'Petrol price changed to ${fuelPriceModel.currentPetrolPrice - (index / 2).floor()}';
+      itemCount: fuelPriceModel.priceEventTags.length,
+      itemBuilder: (BuildContext context, int index) {
+        PriceEventTag priceEventTag = fuelPriceModel.priceEventTags[index];
+
+          String message = '${priceEventTag.date} ${priceEventTag.fuelType} price changed to ${priceEventTag.price}';
+
           return Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Text(
-                message,
-                textAlign: TextAlign.center,
-              ));
-        });
+            padding: const EdgeInsets.all(6.0),
+            child: Text(
+              message,
+              textAlign: TextAlign.center,
+            ),
+          );
+        }
+    );
   }
 
   _openSettingsView(BuildContext context, FuelPriceModel fuelPriceModel) {

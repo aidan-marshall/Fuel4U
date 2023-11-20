@@ -19,6 +19,7 @@ class MyLoginPage extends StatelessWidget {
       builder: (context, appState, child) =>
           Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text("$title - Portal"),
