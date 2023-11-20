@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "950636121703",
+    "project_id": "fuel4u-bdef6",
+    "storage_bucket": "fuel4u-bdef6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950636121703:android:fb3243f5500c6a49ea0ec2",
+        "android_client_info": {
+          "package_name": "za.co.wethinkcode.widgets_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2JfgLrySisfCUAOVjoKBTN9Sie3x9qIc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
